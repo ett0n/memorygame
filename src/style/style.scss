@@ -1,0 +1,149 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+body {
+  background-color: lightsteelblue;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#app {
+  position: relative;
+}
+
+#grid {
+  font-size: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 2em);
+  grid-template-rows: repeat(4, 2em);
+  grid-gap: 1px;
+
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ddd #bbb #aaa #bbb;
+  padding: 8px;
+  background: lightgrey;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.25);
+}
+
+#grid > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+
+  cursor: pointer;
+  transition: transform, 400ms;
+  user-select: none;
+}
+
+#grid > div:hover {
+  background-color: rgb(253, 255, 224);
+}
+
+#grid > div.selected {
+  background-color: lightgray;
+  transform: rotateY(180deg);
+}
+
+#grid > div.found {
+  background-color: lightgreen;
+}
+
+#grid > div.error {
+  background-color: lightcoral;
+}
+#grid > div.hidden {
+  color: rgba(0, 0, 0, 0);
+}
+
+#infos {
+  margin-bottom: 0.25em;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  transform: translatey(-2em);
+  height: 10px;
+  width: 100%;
+  cursor: default;
+}
+
+#winscreen,
+#losescreen,
+#startscreen {
+  position: absolute;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  padding: 3em;
+  font-size: 16px;
+  background-color: lightgray;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#losescreen {
+  color: salmon;
+}
+#winscreen {
+  color: green;
+}
+
+#winscreen.active,
+#losescreen.active,
+#startscreen.active {
+  display: flex;
+}
+
+button {
+  height: 3em;
+  border-radius: 5px;
+  background: navy;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  background: #666;
+  cursor: default;
+}
+
+#leaderboard {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 1em;
+  background: rgba(255, 255, 255, 0.3);
+  width: 300px;
+  height: 90%;
+  font-size: 13px;
+  padding: 1em;
+  border-radius: 7px;
+  list-style-position: inside;
+}
+#leaderboard li {
+  padding: 0.8em;
+  background: rgba(255, 255, 255, 0.2);
+}
+#leaderboard li:nth-child(even) {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#leaderboard li.currentuser {
+  color: blue;
+}
