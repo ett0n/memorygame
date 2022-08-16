@@ -77,40 +77,40 @@ body {
   cursor: default;
 }
 
-#winscreen,
-#losescreen,
-#startscreen {
-  position: absolute;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  padding: 3em;
-  font-size: 16px;
-  background-color: lightgray;
-  bottom: 0;
-  left: 0;
-  border-radius: 10px;
-
+#win-screen,
+#lose-screen,
+#start-screen {
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#losescreen {
+#game-screen {
+  display: none;
+}
+#lose-screen {
   color: salmon;
+  #lose-infos {
+    width: 20rem;
+    font-size: 1.5em;
+    text-align: center;
+    margin-block-end: 1rem;
+  }
 }
 #winscreen {
   color: green;
 }
 
-#winscreen.active,
-#losescreen.active,
-#startscreen.active {
+#win-screen.active,
+#lose-screen.active,
+#start-screen.active,
+#game-screen.active {
   display: flex;
 }
 
 button {
-  height: 3em;
+  border: none;
+  padding: 1rem;
   border-radius: 5px;
   background: navy;
   color: white;

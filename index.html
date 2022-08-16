@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Food Matcher</title>
+    <title>🍔 Matcher</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="src/style/style.scss" />
   </head>
   <body>
     <div id="app">
-      <section id="gamescreen">
+      <section id="game-screen" class="active">
         <div id="infos">
           <div id="chrono">00:00</div>
           <div id="lifecounter"></div>
         </div>
         <div id="grid"></div>
+      </section>
+
+      <section id="lose-screen">
+        <div id="lose-infos-container">
+          <div id="lose-infos">You lost in x try and in x second well done</div>
+        </div>
+        <a href="."><button>Play again</button></a>
       </section>
     </div>
     <script type="module" src="src/main.ts"></script>
