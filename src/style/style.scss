@@ -13,8 +13,14 @@ body {
   justify-content: center;
   align-items: center;
 }
+.domhide {
+  display: none;
+}
 #app {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #grid {
@@ -22,6 +28,16 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 2em);
   grid-template-rows: repeat(4, 2em);
+  @media screen and (max-width: 400px) {
+    grid-template-columns: repeat(4, 1.5em);
+    grid-template-rows: repeat(4, 1.5em);
+    font-size: 2.5rem;
+  }
+  @media screen and (max-width: 305px) {
+    grid-template-columns: repeat(4, 1.6em);
+    grid-template-rows: repeat(4, 1.6em);
+    font-size: 2.2rem;
+  }
   grid-gap: 1px;
 
   border-width: 2px;
@@ -78,7 +94,7 @@ body {
 }
 
 #win-screen,
-#lose-screen,
+#end-screen,
 #start-screen {
   display: none;
   flex-direction: column;
@@ -88,9 +104,9 @@ body {
 #game-screen {
   display: none;
 }
-#lose-screen {
+#end-screen {
   color: salmon;
-  #lose-infos {
+  #end-infos {
     width: 20rem;
     font-size: 1.5em;
     text-align: center;
@@ -102,19 +118,25 @@ body {
 }
 
 #win-screen.active,
-#lose-screen.active,
+#end-screen.active,
 #start-screen.active,
 #game-screen.active {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 button {
+  font-size: 1rem;
   border: none;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 5px;
-  background: navy;
-  color: white;
+  background: #fada5e;
+  color: #292516;
   cursor: pointer;
+  &:hover {
+    filter: brightness(90%);
+  }
 }
 
 button:disabled {
@@ -124,26 +146,36 @@ button:disabled {
 }
 
 #leaderboard {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  margin-left: 1em;
-  background: rgba(255, 255, 255, 0.3);
-  width: 300px;
-  height: 90%;
-  font-size: 13px;
-  padding: 1em;
-  border-radius: 7px;
-  list-style-position: inside;
-}
-#leaderboard li {
-  padding: 0.8em;
-  background: rgba(255, 255, 255, 0.2);
-}
-#leaderboard li:nth-child(even) {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-#leaderboard li.currentuser {
-  color: blue;
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 1rem;
+  h2 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+  }
+  tr:nth-child(odd) {
+    background-color: #aac3e4;
+  }
+  tr:nth-child(n + 7) {
+    display: none;
+  }
+  th {
+    background-color: #8b9fb8;
+    color: #f6f8fb;
+  }
+  td,
+  th {
+    border: 0px;
+    padding: 8px;
+    text-align: left;
+  }
+  .leaderboard-clear {
+    margin-top: 1rem;
+    padding: 1rem;
+    align-self: center;
+    color: #f6f8fb;
+    background: #677aa6;
+  }
 }

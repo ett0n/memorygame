@@ -3,6 +3,7 @@
   <head>
     <title>🍔 Matcher</title>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/style/style.scss" />
   </head>
   <body>
@@ -15,11 +16,19 @@
         <div id="grid"></div>
       </section>
 
-      <section id="lose-screen">
-        <div id="lose-infos-container">
-          <div id="lose-infos">You lost in x try and in x second well done</div>
+      <section id="end-screen">
+        <div id="end-infos-container">
+          <div id="end-infos">You lost in x try and in x seconds well done</div>
         </div>
-        <a href="."><button>Play again</button></a>
+        <a href="."><button>Play again ?</button></a>
+      </section>
+
+      <section id="leaderboard">
+        <h2 class="leaderboard-title">Score history:</h2>
+        <table>
+          <tbody id="leader-inject"></tbody>
+        </table>
+        <button class="leaderboard-clear">&#9747; Clear history</button>
       </section>
     </div>
     <script type="module" src="src/main.ts"></script>
