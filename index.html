@@ -10,7 +10,10 @@
     <div id="app">
       <section id="game-screen" class="active">
         <div id="infos">
-          <div id="chrono">00:00</div>
+          <div class="chrono-container">
+            <span>🕑</span>
+            <div id="chrono">00:00</div>
+          </div>
           <div id="lifecounter"></div>
         </div>
         <div id="grid"></div>
@@ -18,7 +21,7 @@
 
       <section id="end-screen">
         <div id="end-infos-container">
-          <div id="end-infos">You lost in x try and in x seconds well done</div>
+          <div id="end-infos"></div>
         </div>
         <a href="."><button>Play again ?</button></a>
       </section>

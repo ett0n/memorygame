@@ -7,7 +7,7 @@ body {
 }
 
 body {
-  background-color: lightsteelblue;
+  background-color: rgb(206, 211, 238);
   font-family: sans-serif;
   display: flex;
   justify-content: center;
@@ -42,11 +42,11 @@ body {
 
   border-width: 2px;
   border-style: solid;
-  border-color: #ddd #bbb #aaa #bbb;
+  border-color: rgba(196, 201, 228, 0.37);
   padding: 8px;
-  background: lightgrey;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.25);
+  background: rgb(194, 201, 235);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
 #grid > div {
@@ -126,6 +126,10 @@ body {
   align-items: center;
 }
 
+#chrono {
+  color: #292516;
+}
+
 button {
   font-size: 1rem;
   border: none;
@@ -162,7 +166,7 @@ button:disabled {
     display: none;
   }
   th {
-    background-color: #8b9fb8;
+    background-color: rgb(171, 179, 212);
     color: #f6f8fb;
   }
   td,
@@ -178,4 +182,12 @@ button:disabled {
     color: #f6f8fb;
     background: #677aa6;
   }
+}
+
+.chrono-container {
+  display: none;
+}
+.chrono-container.active {
+  display: flex;
+  gap: 0.6rem;
 }

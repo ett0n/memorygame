@@ -1,35 +1,36 @@
 import { startTimer, compare, lifePrint, chrono } from "./functions";
 
-const grid: any = document.querySelector("#grid");
-const gameScreen: any = document.querySelector("#game-screen");
-const endScreen: any = document.querySelector("#end-screen");
-const endInfo: any = document.querySelector("#end-infos");
-const leaderboard: any = document.querySelector("#leaderboard");
+const grid: HTMLElement = document.querySelector("#grid")!;
+const gameScreen: HTMLElement = document.querySelector("#game-screen")!;
+const endScreen: HTMLElement = document.querySelector("#end-screen")!;
+const endInfo: HTMLElement = document.querySelector("#end-infos")!;
+const leaderboard: HTMLElement = document.querySelector("#leaderboard")!;
+const chronoContainer: HTMLElement = document.querySelector(".chrono-container")!;
 
 let board: string[] = [];
-const symbols = ["🍧", "🥨", "🍗", "☕", "🥪", "🍌", "🍔", "🍕"];
+const symbols: string[] = ["🍧", "🥨", "🍗", "☕", "🥪", "🍌", "🍔", "🍕"];
 let counterSuccess: number = 0;
-let gameInterval: any;
+let gameInterval: number;
 let lifesCnt: number = 0;
 let highScores: string = "";
-let tableHead: String = "";
+let tableHead: string = "";
 
 //keep selection step to get dataset id of two elements
 let selectedEl: HTMLElement[] = [];
 
+//create and print the randomized array
 [...symbols, ...symbols].forEach((s) => (Math.random() > 0.5 ? board.push(s) : board.unshift(s)));
-
 grid.innerHTML = board.map((i, index) => `<div class="hidden" data-id="${index}">${i}</div>`).join("");
 
+//printleaderboard if exists
 printLeader();
-
-console.log(new Date().toLocaleString());
 
 //begin stopwatch on grid click from ./functions.ts
 grid.addEventListener(
   "click",
   function () {
     //starts the timer and set life counter
+    chronoContainer.classList.add("active");
     gameInterval = setInterval(startTimer, 1000);
     lifesCnt = 4;
     lifePrint(lifesCnt);
@@ -102,7 +103,7 @@ function win() {
   console.log("gg");
   gameScreen.classList.toggle("active");
   endScreen.classList.toggle("active");
-  endInfo.innerHTML = "You won in <strong>" + chrono.textContent + "</strong> s, <br/> and <strong>" + lifesCnt + "</strong> lifes left! <br/> Well done !";
+  endInfo.innerHTML = `<span style="color:#292516">You won in <strong>${chrono.textContent}</strong>🕑 <br/> and <strong>${lifesCnt}</strong>❤️ left!</span>`;
   addLeader();
 }
 
@@ -110,7 +111,7 @@ function lose() {
   clearInterval(gameInterval);
   gameScreen.classList.toggle("active");
   endScreen.classList.toggle("active");
-  endInfo.innerHTML = "You lost with " + counterSuccess + " correct guessses in " + chrono.textContent + "s";
+  endInfo.innerHTML = `You lost with ${counterSuccess} correct ${counterSuccess > 1 ? "guesses" : "guess"} <br/> in ${chrono.textContent} 🕑`;
 }
 
 function addLeader() {
@@ -132,21 +133,21 @@ function printLeader() {
 
   //check if localstorage exists
   if (localStorage.getItem("scores") === null) {
-    leaderboard.querySelector(".leaderboard-title").classList.add("domhide");
-    leaderboard.querySelector(".leaderboard-clear").classList.add("domhide");
+    leaderboard.querySelector(".leaderboard-title")!.classList.add("domhide");
+    leaderboard.querySelector(".leaderboard-clear")!.classList.add("domhide");
   } else {
-    leaderboard.querySelector(".leaderboard-title").classList.remove("domhide");
-    leaderboard.querySelector(".leaderboard-clear").classList.remove("domhide");
-    tableHead = "<th>Attempt Date</th><th>Life</th><th>Time</th>";
+    leaderboard.querySelector(".leaderboard-title")!.classList.remove("domhide");
+    leaderboard.querySelector(".leaderboard-clear")!.classList.remove("domhide");
+    tableHead = "<th>📅 Attempt Date</th><th>❤️ Lifes</th><th>🕑 Time</th>";
   }
 
   highScores = localStorage.getItem("scores") !== null ? JSON.parse(localStorage.scores) : "";
-  let stringScore: String = (tableHead += highScores);
+  let stringScore: string = (tableHead += highScores);
   domLeaderBoard.innerHTML = stringScore;
 }
 
 document.querySelector(".leaderboard-clear")?.addEventListener("click", () => {
   localStorage.clear();
   printLeader();
-  leaderboard.querySelector("#leader-inject").innerHTML = "";
+  leaderboard.querySelector("#leader-inject")!.innerHTML = "";
 });
